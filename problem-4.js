@@ -1,7 +1,6 @@
 
 //returns true if the array contains elements in a palindome order
 var isPalindrome = function(a){
-	a = numToArray(a);
 	var palindrome = true;
 	for(var i = 0; i < a.length; i++){
 		if(a[i] != a[a.length - 1 - i]){
@@ -14,9 +13,10 @@ var isPalindrome = function(a){
 //returns an array of each digit of a number
 var numToArray = function(num){
 	var a = [];
-	for(var i = 10; i < num*10; i = i*10){
-		a.push(Math.floor(num%i));
-	};
+	while(num > 0){
+		a.push(num%10);
+		num = Math.floor(num/10);
+	}
 	return a;
 };
 
@@ -24,8 +24,8 @@ var numToArray = function(num){
 //i.e. The products of numbers 1-9 (for digit = 1)
 var products = function(digit){
 	var products = [];
-	for(var i = Math.pow(10,digit)/10; i<Math.pow(10,digit+1)/10, i++){
-		for(var j = Math.pow(10,digit)/10; j<Math.pow(10,digit+1)/10, j++){
+	for(var i = Math.pow(10,digit)/10; i<Math.pow(10,digit+1)/10; i++){
+		for(var j = Math.pow(10,digit)/10; j<Math.pow(10,digit+1)/10; j++){
 			products.push(i*j);
 		};
 	};
@@ -37,8 +37,8 @@ var products = function(digit){
 var palindromeArray = function(nums){
 	var a = [];
 	for(var i = 0; i < nums.length; i++){
-		if(isPalindrome(nums[i])){
-			a.push(num[i]);
+		if(isPalindrome(numToArray(nums[i]))){
+			a.push(nums[i]);
 		};
 	};
 	return a;
@@ -54,5 +54,7 @@ var findLargest = function(a){
 	};
 	return big;
 };
+print(numToArray(10901));
+print(isPalindrome(10901));
 
 print(findLargest(palindromeArray(products(3))));

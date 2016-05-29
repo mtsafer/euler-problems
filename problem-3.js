@@ -1,19 +1,20 @@
 var num = 600851475143;
 
 //returns an array of the factors of the given number
-var findFactors = function(x){\
+var findFactors = function(x){
 	var factors = [];
 	for(var i = 2; i < x; i++){
 		if(x % i == 0){
 			factors.push(i);
-		};
-		if(x.indexOf(x/i) >= 0){
-			factors.push(x/i);
-		}
-		else{
-			break;
+			if(factors.indexOf(x/i) == -1){
+				factors.push(x/i);
+			}
+			else{
+				break;
+			};
 		};
 	};
+	return factors;
 };
 
 //a number is prime if it isn't devisible by the prime number
@@ -42,4 +43,15 @@ var findPrime = function(a){
 	return primes;
 };
 
-print(findPrime(findFactors(num)));
+//returns the largest of values in an array;
+var findBiggest = function(a){
+	var big = 0;
+	for(var i = 0; i < a.length; i++){
+		if(a[i] > big){
+			big = a[i];
+		};
+	};
+	return big;
+};
+
+print(findBiggest(findPrime(findFactors(num))));
