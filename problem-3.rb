@@ -37,5 +37,4 @@ def is_prime? number
 end
 
 puts find_biggest(find_prime(find_factors number))
-puts "yaaay!"
 
